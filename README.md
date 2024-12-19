@@ -4,22 +4,20 @@
    import requests
    from aiogram import Bot, Dispatcher, executor, types
    
-   - logging: используется для логирования событий в приложении.
-   - requests: библиотека для выполнения HTTP-запросов.
-   - aiogram: библиотека для работы с Telegram Bot API.
+   logging: используется для логирования событий в приложении.
+   requests: библиотека для выполнения HTTP-запросов.
+   aiogram: библиотека для работы с Telegram Bot API.
 
 2. Константы:
    
-
    API_TOKEN = '7355985669:AAGZFCk8Rp4GmqZVH3sUJ1OZ7CTQJxKi5jo'
    WEATHER_API_KEY = '1f86be97bad23fc8703e21181e0d64af'
    
-   - API_TOKEN: токен для аутентификации бота в Telegram.
-   - WEATHER_API_KEY: ключ API для получения данных о погоде от OpenWeatherMap.
+   API_TOKEN: токен для аутентификации бота в Telegram.
+   WEATHER_API_KEY: ключ API для получения данных о погоде от OpenWeatherMap.
 
 3. Настройка логирования:
    
-
    logging.basicConfig(level=logging.INFO)
    
    Эта строка устанавливает уровень логирования, чтобы видеть сообщения уровня INFO и выше.
@@ -30,11 +28,10 @@
    bot = Bot(token=API_TOKEN)
    dp = Dispatcher(bot)
    
-   - Создается объект Bot с токеном.
-   - Dispatcher управляет обработчиками сообщений.
+   Создается объект Bot с токеном.
+   Dispatcher управляет обработчиками сообщений.
 
 5. Обработчик команд /start и /help:
-   
 
    @dp.message_handler(commands=['start', 'help'])
    async def send_welcome(message: types.Message):
@@ -47,7 +44,6 @@
 
 6. Обработчик команды /weather:
    
-
    @dp.message_handler(commands=['weather'])
    async def send_weather(message: types.Message):
        weather_info = get_weather_samara()
@@ -57,17 +53,15 @@
 
 7. Функция получения погоды:
    
-
    def get_weather_samara():
        city = "Самара"
        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={WEATHER_API_KEY}&units=metric&lang=ru"
        response = requests.get(url)
    
-   - Устанавливается переменная city с названием города.
-   - Формируется url для HTTP-запроса к API погоды.
+   Устанавливается переменная city с названием города.
+   Формируется url для HTTP-запроса к API погоды.
 
 8. Обработка ответа API:
-   
 
    if response.status_code == 200:
        data = response.json()
@@ -86,12 +80,10 @@
            f"Скорость ветра: {wind_speed} м/с"
        )
    
-
-   - Если ответ успешен (код 200), данные о погоде извлекаются из JSON-ответа.
-   - Извлекаются различные параметры погоды: температура, описание, влажность, скорость ветра и название города.
+   Если ответ успешен (код 200), данные о погоде извлекаются из JSON-ответа.
+   Извлекаются различные параметры погоды: температура, описание, влажность, скорость ветра и название города.
 
 9. Обработка ошибки:
-   
 
    else:
        return '❌ Не удалось получить данные о погоде.'
