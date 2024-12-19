@@ -8,10 +8,8 @@ API_TOKEN = '7355985669:AAGZFCk8Rp4GmqZVH3sUJ1OZ7CTQJxKi5jo'
 WEATHER_API_KEY = '1f86be97bad23fc8703e21181e0d64af'
 
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
